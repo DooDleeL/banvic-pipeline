@@ -15,7 +15,7 @@ RUN apt-get update \
 COPY ./airflow/requirements.txt .
 COPY ./airflow/scripts /opt/airflow/scripts
 COPY ./meltano-banvic/ /opt/airflow/meltano
-RUN chmod +x /opt/airflow/scripts/create_banvic_db.sh && chmod +x /opt/airflow/meltano
+RUN sed -i 's/\r$//' /opt/airflow/scripts/create_banvic_db.sh && chmod +x /opt/airflow/scripts/create_banvic_db.sh && chmod +x /opt/airflow/meltano
 
 USER airflow
 RUN pip install uv==0.11.29 && uv pip install --upgrade pip
