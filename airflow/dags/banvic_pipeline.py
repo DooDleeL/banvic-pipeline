@@ -18,7 +18,7 @@ def paths_list():
 @dag(
     dag_id='meltano-banvic-pipeline',
     start_date=datetime(2026, 1, 1),
-    schedule='',
+    schedule='*/5 * * * * ',
     catchup=False
 )
 
@@ -34,7 +34,7 @@ def pipeline():
 
     @task.bash()
     def ingestion(name: str):
-        return f"cd /opt/airflow/meltano && /home/airflow/.local/bin/meltano el tap-csv --select {name} target-postgres"
+        return f"cd /opt/airflow/meltano && /home/airflow/.local/bin/meltano el --state-id=banvic-{name}-pipeline  tap-csv --select {name} target-postgres"
 
     wait_for_file >> ingestion.expand(name=paths_list())
 
