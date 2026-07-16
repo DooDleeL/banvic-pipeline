@@ -1,0 +1,59 @@
+default_environment: dev
+project_id: 019f6bf0-0d22-72b6-87d0-cb52b9c4d6b5
+env_file: .env
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
+    config:
+      files:
+      - entity: agencias
+        path: /opt/airflow/data/source/agencias.csv
+        keys:
+        - cod_agencia
+      - entity: clientes
+        path: /opt/airflow/data/source/clientes.csv
+        keys:
+        - cod_cliente
+      - entity: colaborador_agencia
+        path: /opt/airflow/data/source/colaborador_agencia.csv
+        keys:
+        - cod_agencia
+        - cod_colaborador
+      - entity: colaboradores
+        path: /opt/airflow/data/source/colaboradores.csv
+        keys:
+        - cod_colaborador
+      - entity: contas
+        path: /opt/airflow/data/source/contas.csv
+        keys:
+        - num_conta
+        - cod_cliente
+        - cod_agencia
+        - cod_colaborador
+      - entity: propostas_credito
+        path: /opt/airflow/data/source/propostas_credito.csv
+        keys:
+        - cod_proposta
+        - cod_cliente
+        - cod_colaborador
+      - entity: transacoes
+        path: /opt/airflow/data/source/transacoes.csv
+        keys:
+        - cod_transacao
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      database: banvic_warehouse
+      default_target_schema: banvic
+      host: postgres # Same as placed in docker-compose
+      port: 5432
+      user: airflow
+      add_record_metadata: true
