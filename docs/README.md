@@ -121,9 +121,7 @@ The DAG will run. You can click into individual tasks to inspect their logs and 
 
 ## Screenshots
 
-_Add screenshots here of the Airflow DAG graph and a successful pipeline run, e.g.:_
-
 ```
-![DAG graph view](docs\dag-graph-view.png)
-![Successful run](docs\dag-graph-successful-view.png)
+![DAG graph view](dag-graph-view.png)
+![Successful run](dag-graph-successful-view.png)
 ```
