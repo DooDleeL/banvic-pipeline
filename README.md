@@ -22,3 +22,14 @@ run the following commands:
 `docker compose up airflow-init`
 `docker compose up -d`
 
+depois de executado, o airflow ficará acessível via: http://localhost:8080
+depois de inserido o usuário e senha, go to http://localhost:8080/connections
+set a new connection on 'Add Connection'
+put the same name as is in the code in airflo/dags/banvic_pipeline 'data_source_path', or choose another one and later alter the `fs_conn_id` parameter
+
+after all that is finished
+
+go to the main page of airflow, select the dag 'meltano-banvic-pipeline'
+in the dags page, click 'trigger' and 'trigger' again.
+
+the dag will execute, you can select the tasks and see the logs or the code used.
