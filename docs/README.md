@@ -16,6 +16,8 @@ The project runs two main services in Docker:
 
 Data flow:
 
+![Pipeline Architecture](banvic-pipeline-architecture.png)
+
 ```
 Local filesystem (source data)
         │
