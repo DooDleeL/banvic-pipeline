@@ -121,7 +121,8 @@ The DAG will run. You can click into individual tasks to inspect their logs and 
 
 ## Screenshots
 
-```
 ![DAG graph view](dag-graph-view.png)
+
+---
+
 ![Successful run](dag-graph-successful-view.png)
-```
